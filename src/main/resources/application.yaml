@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: banking-service
+  data:
+   mongodb:
+     uri: mongodb://127.0.0.1:27017/banking_db?replicaSet=rs0
+  graphql:
+    graphiql:
+      enabled: true
+

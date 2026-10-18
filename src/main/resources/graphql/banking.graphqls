@@ -1,0 +1,52 @@
+type Transaction{
+    transactionId: ID!
+    fromAccount: String!
+    toAccount: String!
+    amount: Float!
+    state: TransactionState!
+    createdAt: String!
+    updatedAt: String!
+}
+enum TransactionState {
+    INITIATED
+    VALIDATING
+    APPROVED
+    PROCESSING
+    COMPLETED
+    REJECTED
+    FAILED
+    CANCELLED
+}
+
+enum TransactionEvent {
+    VALIDATE
+    APPROVE
+    PROCESS
+    COMPLETE
+    REJECT
+    FAIL
+    CANCEL
+}
+
+type Query {
+    transaction(transactionId: ID!): Transaction
+}
+
+type Mutation {
+    createTransaction(
+        fromAccount: String!
+        toAccount: String!
+        amount: Float!
+    ): Transaction!
+
+    transferMoney(
+        fromAccount: String!
+        toAccount: String!
+        amount: Float!
+    ): Transaction!
+
+    processTransactionEvent(
+        transactionId: ID!
+        event: TransactionEvent!
+    ): Transaction!
+}
