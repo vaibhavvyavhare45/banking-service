@@ -9,22 +9,18 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
-
 import java.math.BigDecimal;
 @Controller
 @RequiredArgsConstructor
 public class TransactionGraphQLController {
-
         private final TransactionService transactionService;
         private final TransactionRepository transactionRepository;
-
-
+        
         @MutationMapping
         public Transaction createTransaction(
                 @Argument String fromAccount,
                 @Argument String toAccount,
                 @Argument BigDecimal amount) {
-
             return transactionService.createTransaction(
                     fromAccount,
                     toAccount,
@@ -45,7 +41,6 @@ public class TransactionGraphQLController {
         public Transaction processTransactionEvent(
                 @Argument String transactionId,
                 @Argument TransactionEvent event) {
-
             return transactionService.processEvent(
                     transactionId,
                     event
@@ -55,7 +50,6 @@ public class TransactionGraphQLController {
         @QueryMapping
         public Transaction transaction(
                 @Argument String transactionId) {
-
             return transactionRepository
                     .findById(transactionId)
                     .orElse(null);
